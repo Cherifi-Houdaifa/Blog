@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
+var compression = require("compression");
 const dotenv = require("dotenv");
 
 dotenv.config()
@@ -18,6 +19,7 @@ mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection 
 require("./auth/auth");
 
 // middlewares
+app.use(compression())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
