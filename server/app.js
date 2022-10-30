@@ -7,7 +7,7 @@ dotenv.config()
 
 var app = express();
 
-const authRouter = require('./routes/auth');
+const apiRouter = require('./routes/index');
 
 // DB Connection
 const mongoose = require('mongoose');
@@ -22,10 +22,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api', authRouter);
+app.use('/api', apiRouter);
 
 app.use((err, req, res, next) => {
-    console.log(err);
     res.status(500).json(err);
 })
 
