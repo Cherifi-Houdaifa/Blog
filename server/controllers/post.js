@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const Comment = require("../models/comment");
 const isValidObjectId = require('mongoose').isValidObjectId;
 const { body, validationResult } = require('express-validator');
 
@@ -113,6 +114,12 @@ exports.deletePost = async function (req, res, next) {
         if (!post) {
             return res.json({ message: 'Post Not Found' });
         }
+        let commentPromises = []
+        for (let i = 0; i < post.comments.length; i++) {
+            commentPromises.push(Comment.findByIdAndDelete(post.comments[i])) 
+        }
+        const result = await Promise.all(commentPromises);
+        console.log(result)
         res.json(post);
     } catch (err) {
         next(err);
