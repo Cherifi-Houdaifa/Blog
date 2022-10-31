@@ -1,0 +1,38 @@
+main.home-content {
+    min-height: calc(100vh - 91px);
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main.home-content > .create-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 500px;
+    height: 60vh;
+}
+main.home-content > .create-post > textarea {
+    width: 500px;
+    height: 210px;
+}
+main.home-content > .posts {
+    width: 100%;
+}
+main.home-content > .posts > h2 {
+    text-align: center;
+    font-family: "Good Times";
+    font-size: 30px;
+}
+main.home-content > .posts > .post {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+main.home-content > .posts > .post > h3 {
+    font-size: 24px;
+    margin: 0;
+    cursor: pointer;
+}
