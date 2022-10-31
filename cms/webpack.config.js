@@ -1,8 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
+const dotenv = require("dotenv");
 
-const mode = 'development';
+dotenv.config()
+
+const mode = process.env.mode;
 
 module.exports = {
     mode: mode,
@@ -54,7 +57,7 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             'process.env.SERVER_URL': JSON.stringify({
-                url: 'http://localhost:3000',
+                url: process.env.SERVER_URL,
             }),
         }),
     ],
