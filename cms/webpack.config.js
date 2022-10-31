@@ -13,6 +13,7 @@ module.exports = {
         path: path.resolve(__dirname, './build'),
         filename: '[name].[contenthash].js',
         clean: true,
+        publicPath: '/',
     },
     devtool: mode === 'development' ? 'eval-source-map' : false,
     devServer: {
@@ -52,7 +53,9 @@ module.exports = {
             // favicon: path.resolve(__dirname, 'public/favicon.ico'),
         }),
         new webpack.DefinePlugin({
-            'process.env.SERVER_URL': JSON.stringify({url: "http://localhost:3000"}),
+            'process.env.SERVER_URL': JSON.stringify({
+                url: 'http://localhost:3000',
+            }),
         }),
     ],
 };

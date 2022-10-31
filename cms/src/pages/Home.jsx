@@ -6,7 +6,6 @@ export default function Home() {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [posts, setPosts] = useState([]);
-    const postsDiv = useRef();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -74,19 +73,16 @@ export default function Home() {
                     onClick={btnClickHandler}
                 />
             </div>
-            <div className="posts" ref={postsDiv}>
+            <div className="posts">
                 <h2>Posts</h2>
                 {posts.map((post, index) => {
                     return (
-                        <>
-                            <div className="post" key={index}>
-                                <h3 onClick={(e) => navigate("/" + post._id)}>{post.title}</h3>
-                                <h4>
-                                    {new Date(post.dateCreated).toDateString()}
-                                </h4>
-                            </div>
-                            <hr />
-                        </>
+                        <div className="post" key={index}>
+                            <h3 onClick={(e) => navigate('/posts/' + post._id)}>
+                                {post.title}
+                            </h3>
+                            <h4>{new Date(post.dateCreated).toDateString()}</h4>
+                        </div>
                     );
                 })}
             </div>
