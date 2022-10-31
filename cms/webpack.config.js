@@ -1,7 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const path = require('path');
 
-const mode = "development";
+const mode = 'development';
 
 module.exports = {
     mode: mode,
@@ -13,7 +14,7 @@ module.exports = {
         filename: '[name].[contenthash].js',
         clean: true,
     },
-    devtool: mode === "development" ? "eval-source-map" : false,
+    devtool: mode === 'development' ? 'eval-source-map' : false,
     devServer: {
         static: path.resolve(__dirname, './build'),
         port: '4000',
@@ -28,7 +29,7 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/i,
-                use: ["style-loader", 'css-loader'],
+                use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
@@ -49,6 +50,9 @@ module.exports = {
             filename: 'index.html',
             template: path.resolve(__dirname, 'public/index.html'),
             // favicon: path.resolve(__dirname, 'public/favicon.ico'),
-        })
+        }),
+        new webpack.DefinePlugin({
+            'process.env.SERVER_URL': JSON.stringify({url: "http://localhost:3000"}),
+        }),
     ],
 };
